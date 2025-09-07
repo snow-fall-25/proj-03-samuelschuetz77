@@ -1,0 +1,177 @@
+[
+    {
+        "id": 1,
+        "name": null,
+        "city": "Belgrade",
+        "country": "Federal Republic of Yugoslavia",
+        "currency": "Yugoslav Dinar"
+    },
+    {
+        "id": 2,
+        "name": null,
+        "city": "Pale",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 3,
+        "name": null,
+        "city": "Han Pijesak",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 4,
+        "name": null,
+        "city": "Zagreb",
+        "country": "Croatia",
+        "currency": "Croatian Kuna"
+    },
+    {
+        "id": 5,
+        "name": null,
+        "city": "Sarajevo",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 6,
+        "name": null,
+        "city": "Banja Luka",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 7,
+        "name": null,
+        "city": "Knin",
+        "country": "Croatia",
+        "currency": "Croatian Kuna"
+    },
+    {
+        "id": 8,
+        "name": null,
+        "city": "Dečani",
+        "country": "Federal Republic of Yugoslavia",
+        "currency": "Yugoslav Dinar"
+    },
+    {
+        "id": 9,
+        "name": null,
+        "city": "Vukovar",
+        "country": "Croatia",
+        "currency": "Croatian Kuna"
+    },
+    {
+        "id": 10,
+        "name": null,
+        "city": "Tuzla",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 11,
+        "name": null,
+        "city": "Bern",
+        "country": "Switzerland",
+        "currency": "Swiss Franc"
+    },
+    {
+        "id": 12,
+        "name": null,
+        "city": "Zürich",
+        "country": "Switzerland",
+        "currency": "Swiss Franc"
+    },
+    {
+        "id": 13,
+        "name": null,
+        "city": "Dayton",
+        "country": "United States",
+        "currency": "US Dollar"
+    },
+    {
+        "id": 14,
+        "name": null,
+        "city": "New York",
+        "country": "United States",
+        "currency": "US Dollar"
+    },
+    {
+        "id": 15,
+        "name": null,
+        "city": "Brussels",
+        "country": "Belgium",
+        "currency": "Belgian Franc"
+    },
+    {
+        "id": 16,
+        "name": null,
+        "city": "Vlasenica",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 17,
+        "name": null,
+        "city": "Višegrad",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 18,
+        "name": null,
+        "city": "Zenica",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 19,
+        "name": null,
+        "city": "Mostar",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 20,
+        "name": null,
+        "city": "Bocinja",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 21,
+        "name": "Holiday Inn",
+        "city": "Sarajevo",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 22,
+        "name": "Hotel Moskva Café",
+        "city": "Belgrade",
+        "country": "Federal Republic of Yugoslavia",
+        "currency": "Yugoslav Dinar"
+    },
+    {
+        "id": 23,
+        "name": "Vilina Vlas Hotel",
+        "city": "Višegrad",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 24,
+        "name": "Kajak Club",
+        "city": "Banja Luka",
+        "country": "Bosnia and Herzegovina",
+        "currency": "Bosnian Dinar"
+    },
+    {
+        "id": 25,
+        "name": "British Embassy",
+        "city": "Zagreb",
+        "country": "Croatia",
+        "currency": "Croatian Kuna"
+    }
+]

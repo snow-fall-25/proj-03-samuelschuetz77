@@ -45,7 +45,6 @@ C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\p
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\scopedcss\bundle\proj03.styles.css
-C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\compressed\ij9iaoxgoz-fuof7dua7l.gz
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\staticwebassets.development.json
@@ -56,3 +55,6 @@ C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\p
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\proj03.pdb
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\proj03.genruntimeconfig.cache
 C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\ref\proj03.dll
+C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\bin\Debug\net9.0\people.json
+C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\bin\Debug\net9.0\places.json
+C:\Users\samue\OneDrive\Desktop\Backend Dev Class\proj\proj-03-samuelschuetz77\proj03\obj\Debug\net9.0\compressed\ij9iaoxgoz-1nsn58e3fq.gz

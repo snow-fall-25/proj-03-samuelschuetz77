@@ -1,114 +1,77 @@
 @baseUrl = http://localhost:5028
 
-### Capability 1 - inject IConfiguration and retrieve some value from your appsettings.json file (or other configuration source)
-### Reads agency name from appsettings.json
+### Capability 1 - Root check
+GET {{baseUrl}}/
+
+### Capability 2 - IConfiguration demo
 GET {{baseUrl}}/agency/info
 
-
-### Capability 2 - static files hosting
-### Serves a static file from wwwroot
+### Capability 3 - Static files demo (health.txt in wwwroot)
 GET {{baseUrl}}/health.txt
 
-### Capability 3 (valid) - use DataAnnotations attributes (happy path)
-### This should return 201 Created with a Location header like /people/{newId}
+### Capability 4 - Endpoint group demo (people group)
+### First request shows the endpoint group in action
+GET {{baseUrl}}/people
+
+### Capability 5 - TypedResults demo (Get by ID returns NotFound if missing)
+GET {{baseUrl}}/people/999
+
+### Capability 6 - Results.* demo (Created)
+### Create a valid person
 POST {{baseUrl}}/people
 Content-Type: application/json
 
 {
-  "fullName": "Elvir Hadžić",
-  "category": "Field Asset",
+  "fullName": "Test Agent",
+  "category": "Field Agent",
   "affiliation": "Friendly",
   "accessLevel": 3
 }
 
+### Capability 7 - See newly created person in list
+GET {{baseUrl}}/people
+
+### Capability 8 - Query parameter binding (search across string fields)
+GET {{baseUrl}}/people/search?q=Arkan
+###
+GET {{baseUrl}}/people/search?q=Friendly
+###
+GET {{baseUrl}}/people/search?q=Agent
+
+### Capability 9 - Get person by alias (similar but not matching route)
+GET {{baseUrl}}/people/by-alias/Merchant%20of%20Death
+
+### Capability 10 - Bind parameter from an HTTP header
+GET {{baseUrl}}/protocols/by-location/1
+X-Agent-Id: Agent007
 
 
-### Capability 3 - use DataAnnotations attributes to validate incoming data (Required, MaxLength, Email, Range, etc.)
-### Attempt to create invalid person (AccessLevel out of range triggers validation error)
-POST {{baseUrl}}/people
-Content-Type: application/json
 
-{
-  "fullName": "Invalid Agent",
-  "category": "Test",
-  "affiliation": "Friendly",
-  "accessLevel": 15
-}
-
-
-### Capability 4 - use an endpoint group
-### POST request inside /people group
-POST {{baseUrl}}/people
-Content-Type: application/json
-
-{
-  "fullName": "Test Asset",
-  "category": "Asset",
-  "affiliation": "Friendly",
-  "accessLevel": 3
-}
-
-
-### Capability 5 - use TypedResults in your endpoint
-### Get a person by ID → returns TypedResults.Ok or TypedResults.NotFound
-GET {{baseUrl}}/people/1
-X-Access-Level: 9
-
-
-### Capability 6 - use Results.* in your endpoint (e.g. return Results.Created($"/path/{id}", newItem);)
-### Agency info returns Results.Ok
-GET {{baseUrl}}/agency/info
-
-
-### Capability 7 - use .WithName() on an endpoint
-### Person GET endpoint is named "GetPersonById"
-GET {{baseUrl}}/people/2
-X-Access-Level: 9
-
-
-### Capability 8 - Generate a link with LinkGenerator on a named endpoint
-### Search people by name, returns self-link via LinkGenerator
-GET {{baseUrl}}/people/search?q=Slobodan
-
-
-### Capability 9 - Bind a parameter from the query string
-### q= parameter bound automatically
-GET {{baseUrl}}/people/search?q=Karadžić
-
-
-### Capability 10 - Bind a parameter from an http header
-### Reads custom header X-Access-Level
-GET {{baseUrl}}/people/5
-X-Access-Level: 2
-
-
-### Capability 11 - Use .AddEndpointFilter() to add custom logging to only one endpoint or endpoint group
-### Protocols group logs every request
-GET {{baseUrl}}/protocols/by-location/21
-X-Agent-Id: MI5-SCHUETZ-01
-
+### Capability 11 - Use .AddEndpointFilter() for custom logging
+### This request will trigger the logging filter for the protocols group
+###look in console
+GET {{baseUrl}}/protocols/by-location/2
+X-Agent-Id: Analyst123
 
 ### Capability 12 - Use .UseExceptionHandler()
-### Middleware catches exceptions and redirects to /errors
-GET {{baseUrl}}/people/2
-X-Access-Level: 1
-
+### Trigger a handled error (bad route causes exception caught by error pipeline)
+GET {{baseUrl}}/force-error
 
 ### Capability 13 - Show use of .UseExceptionHandler()
-### Access violation → handled by /errors
-GET {{baseUrl}}/people/3
-X-Access-Level: 1
+### Demonstrates JSON RFC 7807 ProblemDetails response from the /errors endpoint
+GET {{baseUrl}}/errors
 
+### Capability 14 - Multiple paths handled by same endpoint (places.json data)
+GET {{baseUrl}}/loc/1
+###
+GET {{baseUrl}}/places/3
+###
+GET {{baseUrl}}/places/99   # NotFound
 
-### Capability 14 - Show use of multiple HTTP requests with different paths all being handled by the same endpoint because of route parameters
-### /loc/{id} and /places/{id} point to same handler
-GET {{baseUrl}}/loc/21
-GET {{baseUrl}}/places/21
+### Capability 15 - Multiple HTTP requests with similar but not matching routes
+GET {{baseUrl}}/people/by-alias/Sloba
+###
+GET {{baseUrl}}/people/search?q=Sloba
 
-
-### Capability 15 - Show multiple HTTP requests with similar but not matching routes
-### /people/{id:int} vs /people/by-alias/{alias}
-GET {{baseUrl}}/people/13
-X-Access-Level: 9
-
-GET {{baseUrl}}/people/by-alias/Arkan
+### Extra Capability - Get all agencies from config
+GET {{baseUrl}}/agencies

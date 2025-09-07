@@ -1,140 +1,191 @@
-using System.Data;
 using System.ComponentModel.DataAnnotations;
-using Dapper;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Data.Sqlite;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // (1) IConfiguration demo
-var agencyName = builder.Configuration["Agency:Name"] ?? "Unknown Agency";
 
-// Register SQLite/Dapper
-builder.Services.AddScoped<IDbConnection>(_ => new SqliteConnection("Data Source=intel.db"));
+var agencyName = builder.Configuration["Agency:Name"] ?? "Unknown Agency";
+var agencies = builder.Configuration.GetSection("Agencies").Get<List<Agency>>() ?? new();
+
+
 
 var app = builder.Build();
 
-app.UseExceptionHandler("/errors");  // (12)
-app.UseStaticFiles();                // (2)
+// (2) Static files hosting
+app.UseStaticFiles();
 
-// ---------- DB setup ----------
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<IDbConnection>();
-    db.Open();
-    DbSeeder.EnsureTables(db);
-    DbSeeder.SeedIfEmpty(db);
-}
+// (11/12) Exception handler
+app.UseExceptionHandler("/errors");
 
-// ---------- Error Handler (13) ----------
+// ---------- Error Handler (12/13) ----------
 app.Map("/errors", (HttpContext ctx) =>
 {
     var feature = ctx.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>();
     var ex = feature?.Error;
-    var status = ex is AccessViolationException ? 403 : 500;
+    var status = 500;
     return Results.Problem(
-        title: ex is AccessViolationException ? "Access denied" : "Unexpected error",
+        title: "Unexpected error",
         detail: ex?.Message,
         statusCode: status,
         instance: feature?.Path
     );
 });
 
-// ---------- Endpoints ----------
+// ---------- In-memory data ----------
+var placesStore = new List<Place>();
 
-// (1) IConfiguration
-app.MapGet("/agency/info", () => Results.Ok(new { Agency = agencyName }));
+try
+{
+    var placesJson = File.ReadAllText("places.json");
+    var places = JsonSerializer.Deserialize<List<Place>>(placesJson, new JsonSerializerOptions
+    {
+        PropertyNameCaseInsensitive = true
+    });
+
+    if (places is not null)
+    {
+        placesStore.AddRange(places);
+        Console.WriteLine($"Loaded {placesStore.Count} places from JSON");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error loading places JSON: {ex.Message}");
+}
+
+
+
+
+var peopleStore = new List<Person>();
+
+try
+{
+    var json = File.ReadAllText("people.json");
+    var options = new JsonSerializerOptions
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
+    var people1 = JsonSerializer.Deserialize<List<Person>>(json, options);
+
+    if (people1 is not null)
+    {
+        peopleStore.AddRange(people1);
+        Console.WriteLine($"Loaded {peopleStore.Count} people from JSON");
+    }
+    else
+    {
+        Console.WriteLine("JSON file was empty or not parsed correctly.");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error loading JSON: {ex.Message}");
+}
 
 // (4) Endpoint group
 var people = app.MapGroup("/people");
 
-// Simple validator
-var validate = (object dto) =>
+// Manual validation helper
+void Validate(object dto)
 {
     var ctx = new ValidationContext(dto);
     Validator.ValidateObject(dto, ctx, validateAllProperties: true);
-};
+}
 
-// (3,5,6,7) Create person
-// (3,5,6,7) Create person
-people.MapPost("/", async Task<Results<Created<Person>, ValidationProblem>>
-    (IDbConnection db, PersonCreateDto dto) =>
+// (3,5,6,7) Create person with validation
+people.MapPost("/", async Task<IResult> (HttpContext ctx) =>
 {
-    // Capability 3: validate using DataAnnotations
-    var ctx = new ValidationContext(dto);
-    var results = new List<ValidationResult>();
-
-    if (!Validator.TryValidateObject(dto, ctx, results, true))
+    // Deserialize body into DTO
+    var dto = await ctx.Request.ReadFromJsonAsync<PersonCreateDto>();
+    if (dto is null)
     {
-        return TypedResults.ValidationProblem(
-            results.ToDictionary(
-                r => r.MemberNames.FirstOrDefault() ?? "General",
-                r => new[] { r.ErrorMessage ?? "Invalid" })
-        );
+        return TypedResults.BadRequest(new { error = "Invalid JSON body" });
     }
 
-    // Insert valid record
-    var id = await db.ExecuteScalarAsync<long>(
-        "INSERT INTO People (FullName,Category,Affiliation,AccessLevel) " +
-        "VALUES (@FullName,@Category,@Affiliation,@AccessLevel); " +
-        "SELECT last_insert_rowid();",
-        dto);
+    // Manual validation
+    try
+    {
+        Validate(dto);
+    }
+    catch (ValidationException vex)
+    {
+        return TypedResults.ValidationProblem(new Dictionary<string, string[]>
+        {
+            ["ValidationError"] = new[] { vex.Message }
+        });
+    }
 
-    // ✅ Explicit column list so Dapper matches Person record constructor
-    var person = await db.QuerySingleAsync<Person>(
-        "SELECT Id, FullName, Category, Affiliation, AccessLevel, Alias, RealPersonWiki " +
-        "FROM People WHERE Id=@Id", new { Id = id });
+// Create new person
+var newPerson = new Person(
+    Id: peopleStore.Count + 1,
+    Name: dto.FullName,
+    Category: dto.Category,
+    Affiliation: dto.Affiliation,
+    AccessLevel: dto.AccessLevel.ToString(),
+    Alias: null,
+    RealPersonWiki: null,
+    LocationId: (peopleStore.Count * 41)
+    );
 
-    return TypedResults.Created($"/people/{id}", person);
+    peopleStore.Add(newPerson);
+
+    return TypedResults.Created($"/people/{newPerson.Id}", newPerson);
 })
-.WithName("CreatePerson");
+.WithName("CreatePerson");  // (7) .WithName()
 
-
+// GET all people
+people.MapGet("/", (HttpContext ctx) =>
+{
+    return TypedResults.Ok(peopleStore);
+});
 
 
 
 // (5,7,10,13) Get person by ID
-people.MapGet("/{id:int}", async Task<IResult> (int id, IDbConnection db, HttpContext ctx) =>
+
+
+// (8,9) Search with query + LinkGenerator
+people.MapGet("/search", (string q, LinkGenerator links, HttpContext ctx) =>
 {
-    var person = await db.QuerySingleOrDefaultAsync<Person>("SELECT * FROM People WHERE Id=@Id", new { Id = id });
-    if (person is null) return TypedResults.NotFound();
+    var results = peopleStore
+        .Where(p =>
+            typeof(Person).GetProperties()
+                .Where(prop => prop.PropertyType == typeof(string))
+                .Select(prop => prop.GetValue(p) as string)
+                .Any(val => val?.Contains(q, StringComparison.OrdinalIgnoreCase) ?? false)
+        )
+        .Select(p => new
+        {
+            Person = p,
+            Link = links.GetPathByName(ctx, "GetPersonById", new { id = p.Id })
+        });
 
-    var lvlHeader = ctx.Request.Headers["X-Access-Level"].FirstOrDefault();
-    if (!int.TryParse(lvlHeader, out var callerLevel)) callerLevel = 1;
-
-    if (callerLevel < person.AccessLevel)
-        throw new AccessViolationException($"Need {person.AccessLevel}, got {callerLevel}");
-
-    return TypedResults.Ok(person);
-})
-.WithName("GetPersonById");
-
-// (8,9) Search people with LinkGenerator + query
-people.MapGet("/search", async (string q, LinkGenerator links, HttpContext ctx, IDbConnection db) =>
-{
-    var results = await db.QueryAsync<Person>("SELECT * FROM People WHERE FullName LIKE @P", new { P = $"%{q}%" });
-    return Results.Ok(results.Select(p => new
-    {
-        Person = p,
-        Link = links.GetPathByName(ctx, "GetPersonById", new { id = p.Id })
-    }));
+    return Results.Ok(results);
 });
 
-// (15) Similar but not matching route
+
+// (9,15) Get person by alias
 people.MapGet("/by-alias/{alias}", (string alias) =>
 {
-    return Results.Ok(new { Alias = alias, Note = "Stub alias search" });
+    var person = peopleStore
+        .FirstOrDefault(p => string.Equals(p.Alias, alias, StringComparison.OrdinalIgnoreCase));
+
+    return person is null
+        ? Results.NotFound(new { Message = $"No person found with alias '{alias}'" })
+        : Results.Ok(person);
 });
 
-// (14) Multiple paths handled by same endpoint
-async Task<IResult> GetLocation(int id, IDbConnection db)
+// Capability 12 - Force an error so .UseExceptionHandler() can catch it
+app.MapGet("/force-error", () =>
 {
-    var loc = await db.QuerySingleOrDefaultAsync<Location>("SELECT * FROM Locations WHERE Id=@Id", new { Id = id });
-    return loc is null ? Results.NotFound() : Results.Ok(loc);
-}
-app.MapGet("/loc/{id:int}", GetLocation);
-app.MapGet("/places/{id:int}", GetLocation);
+    throw new Exception("This is a forced test error");
+});
+
+
 
 // (11) Endpoint filter demo
 var protocols = app.MapGroup("/protocols").AddEndpointFilter(async (ctx, next) =>
@@ -143,29 +194,59 @@ var protocols = app.MapGroup("/protocols").AddEndpointFilter(async (ctx, next) =
     return await next(ctx);
 });
 
-// Protocols list by location (10 header binding too)
-protocols.MapGet("/by-location/{locationId:int}", async (int locationId, IDbConnection db, HttpContext ctx) =>
+// Protocols stub (just to demonstrate)
+protocols.MapGet("/by-location/{id:int}", (int id, HttpContext ctx) =>
 {
     var agent = ctx.Request.Headers["X-Agent-Id"].FirstOrDefault() ?? "anonymous";
-    Console.WriteLine($"Viewed protocols for {locationId} by {agent}");
-    var rows = await db.QueryAsync<Protocol>("SELECT * FROM Protocols WHERE LocationId=@Id", new { Id = locationId });
-    return Results.Ok(rows);
+    return Results.Ok(new { LocationId = id, ViewedBy = agent });
 });
 
-// ---------- Default root ----------
-app.MapGet("/", () => Results.Text("OK. Try /agency/info, /people, /people/search?q=alija, /loc/1, /protocols/by-location/1"));
+// (14) Multiple paths handled by same endpoint
+IResult GetLocation(int id)
+{
+    var place = placesStore.FirstOrDefault(p => p.Id == id);
+    return place is null
+        ? Results.NotFound(new { Message = $"No place found with Id {id}" })
+        : Results.Ok(place);
+}
+
+app.MapGet("/loc/{id:int}", GetLocation);
+app.MapGet("/places/{id:int}", GetLocation);
+
+
+// ---------- Root ----------
+app.MapGet("/", () => Results.Text("OK. Try /agency/info, /people, /people/search?q=test"));
+
+app.MapGet("/agencies", () => Results.Ok(agencies));
+
+app.MapGet("/agency/info", () => Results.Ok(new { Agency = agencyName }));
 
 app.Run();
 
 // ---------- Records ----------
 public record Person(
     int Id,
-    string FullName,
+
+    [property: JsonPropertyName("name")]
+    string Name,
+
+    [property: JsonPropertyName("category")]
     string Category,
+
+    [property: JsonPropertyName("affiliation")]
     string Affiliation,
-    int AccessLevel,
+
+    [property: JsonPropertyName("accessLevel")]
+    string AccessLevel,  // string, since JSON has "Secret", "Top Secret"
+
+    [property: JsonPropertyName("alias")]
     string? Alias,
-    string? RealPersonWiki
+
+    [property: JsonPropertyName("realPersonWiki")]
+    string? RealPersonWiki,
+
+    [property: JsonPropertyName("locationId")]
+    int? LocationId
 );
 
 public record PersonCreateDto(
@@ -174,6 +255,12 @@ public record PersonCreateDto(
     [Required] string Affiliation,
     [Range(1, 9)] int AccessLevel
 );
+public record Agency(int Id, string Name, string Country);
 
-public record Location(int Id, string? Name, string City, string Country, string Currency);
-public record Protocol(int Id, int LocationId, string Title, string ConciseGuideline);
+public record Place(
+    int Id,
+    string? Name,
+    string City,
+    string Country,
+    string Currency
+);

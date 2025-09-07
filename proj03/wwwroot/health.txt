@@ -1,1 +1,86 @@
 MI5 Yugoslavia Project - Static File Checkpoint
+
+Overview of Included Entities
+
+In this dummy dataset, we have compiled 50 records blending real
+ historical figures from the Yugoslav Wars (early 1990s) with fictional operatives
+  and assets to simulate a British intelligence (MI5/MI6) database about two months after the peak of the conflict. 
+  The data covers real political and military leaders, indicted war criminals, intelligence and paramilitary figures,
+   as well as humanitarian activists and spies, each with an assigned affiliation and classification level. 
+   We also include specific locations (cities, neighborhoods, and even cafes or safehouses) with country and currency information,
+    reflecting the on-the-ground detail MI5 might track.
+
+Notable Real Individuals (1990s Yugoslav Wars)
+
+Slobodan Milošević – Serbian president known as the “Butcher of the Balkans,” who fueled ethnic conflict and mass atrocities during his 13-year rule
+justiceinfo.net
+. (Hostile; President of Serbia 1989–97)
+
+Radovan Karadžić – Bosnian Serb political leader (President of Republika Srpska 1992–95) later found guilty of genocide and other war crimes
+britannica.com
+. (Hostile; Bosnian Serb leader)
+
+Ratko Mladić – Bosnian Serb general who led the Army of Republika Srpska during the war, later convicted of genocide, war crimes, and crimes against humanity
+en.wikipedia.org
+. (Hostile; Military commander)
+
+Vojislav Šešelj – Serbian ultra-nationalist paramilitary leader and politician accused of orchestrating the murder and deportation of Croat and Muslim civilians during the wars
+justiceinfo.net
+. (Hostile; Paramilitary/Political figure)
+
+Franjo Tuđman – Nationalist president of Croatia who led Croatia’s secession from Yugoslavia in 1991, sparking a four-year war that left about 20,000 people dead
+justiceinfo.net
+. (Friendly; Croatian political leader)
+
+Alija Izetbegović – Bosnia’s first president, who led the republic to independence in 1992 and through the 1992–95 Bosnian War
+justiceinfo.net
+. (Friendly; Bosnian political leader)
+
+Biljana Plavšić – Former Bosnian Serb president, the first woman convicted by the UN war crimes tribunal (ICTY) – she pleaded guilty to crimes against humanity and was sentenced to 11 years
+justiceinfo.net
+. (Hostile; Bosnian Serb politician)
+
+Ante Gotovina – Croatian Army general considered a hero for the 1995 Operation Storm offensive; later indicted for war crimes (he was eventually acquitted on appeal in 2012)
+justiceinfo.net
+. (Friendly; Croatian military officer)
+
+Ramush Haradinaj – Kosovo Albanian rebel commander (KLA) during the 1998–99 conflict, who was charged with war crimes against Serb civilians but acquitted in 2012 amid witness intimidation concerns
+justiceinfo.net
+. (Neutral; KLA paramilitary leader)
+
+Sonja Biserko – Serbian human rights campaigner, founder and president of the Helsinki Committee for Human Rights in Serbia, known for documenting war crimes and speaking against nationalism
+en.wikipedia.org
+. (Friendly; Activist)
+
+Nataša Kandić – Serbian human rights activist whose Humanitarian Law Center gathered evidence of 1990s war crimes – research that proved integral to ICTY prosecutions (e.g. the “smoking gun” Srebrenica tape)
+en.wikipedia.org
+. (Friendly; Activist)
+
+Viktor Bout – Notorious Russian arms dealer nicknamed the “Merchant of Death,” alleged to have supplied weapons to Balkan combatants among other conflicts (later convicted by the US for arms trafficking)
+en.wikipedia.org
+en.wikipedia.org
+. (Hostile; Arms trafficker)
+
+(Many other real figures are included as well – e.g. Momčilo Krajišnik (Bosnian Serb leader, later convicted of war crimes), Goran Hadžić (Croatian Serb leader, charged with ethnic cleansing in Croatia)
+theguardian.com
+, Jovica Stanišić and Franko “Frenki” Simatović (Serbian state security chiefs convicted for running covert units
+balkaninsight.com
+), Željko “Arkan” Ražnatović (Serb paramilitary warlord)
+en.wikipedia.org
+, Mirjana “Mira” Marković (Milosevic’s influential wife), Zoran Đinđić (Serbian opposition leader), and others. Each real person has a link to their Wikipedia page in the dataset.)
+
+Fictional Assets and Operatives
+
+To enhance realism, the dataset also features fictitious intelligence operatives, informants, and local assets:
+
+MI6 agents (e.g. a field agent in Sarajevo posing as a journalist, and a station chief in Zagreb’s British Embassy) coordinating covert operations.
+
+CIA officer in Sarajevo’s U.S. mission and GRU (Russian) operatives in Belgrade influencing Serb operations – reflecting the international spy presence.
+
+Local informants like a Bosnian interpreter in Sarajevo and a Belgrade journalist secretly providing intel to the UK.
+
+Paramilitary figures (fictional Serb warlord in Višegrad, a Croat HVO militia officer in Mostar, etc.) and organized crime bosses profiting from wartime smuggling.
+
+Humanitarian and media personas (a Bosniak aid worker in Tuzla, a war correspondent, etc.) who serve as eyes on the ground.
+
+Each fictional entry is crafted with a plausible Slavic or international name and placed at a specific locale (sometimes a neighborhood, hotel, or café rather than just a city) to mimic the granular detail of intelligence reports. For example, a hostile meeting spot is listed as “Hotel Moskva Café, Belgrade” – a known downtown location – and a British agent in Sarajevo is located at “Holiday Inn, Sarajevo”, the hotel where many foreign correspondents stayed during the siege. This level of detail aligns with real tradecraft, adding realistic texture to the dataset.

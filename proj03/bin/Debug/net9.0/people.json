@@ -1,0 +1,502 @@
+[
+    {
+        "id": 1,
+        "name": "Slobodan Milošević",
+        "alias": "Sloba",
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Slobodan_Milo%C5%A1evi%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 2,
+        "name": "Radovan Karadžić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 2,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Radovan_Karad%C5%BEi%C4%87",
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 3,
+        "name": "Ratko Mladić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Military Leader",
+        "locationId": 3,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Ratko_Mladi%C4%87",
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 4,
+        "name": "Vojislav Šešelj",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Paramilitary Leader",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Vojislav_%C5%A0e%C5%A1elj",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 5,
+        "name": "Franjo Tuđman",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Political Leader",
+        "locationId": 4,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Franjo_Tu%C4%91man",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 6,
+        "name": "Alija Izetbegović",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Political Leader",
+        "locationId": 5,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Alija_Izetbegovi%C4%87",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 7,
+        "name": "Biljana Plavšić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 6,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Biljana_Plav%C5%A1i%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 8,
+        "name": "Ante Gotovina",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Military Officer",
+        "locationId": 7,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Ante_Gotovina",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 9,
+        "name": "Ramush Haradinaj",
+        "alias": null,
+        "affiliation": "Neutral",
+        "category": "Paramilitary Leader",
+        "locationId": 8,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Ramush_Haradinaj",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 10,
+        "name": "Goran Hadžić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 9,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Goran_Had%C5%BEi%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 11,
+        "name": "Milan Babić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 7,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Milan_Babi%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 12,
+        "name": "Momčilo Krajišnik",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Political Leader",
+        "locationId": 2,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Mom%C4%8Dilo_Kraji%C5%A1nik",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 13,
+        "name": "Željko Ražnatović",
+        "alias": "Arkan",
+        "affiliation": "Hostile",
+        "category": "Paramilitary Commander",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Arkan",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 14,
+        "name": "Jovica Stanišić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Intelligence Officer",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Jovica_Stani%C5%A1i%C4%87",
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 15,
+        "name": "Franko Simatović",
+        "alias": "Frenki",
+        "affiliation": "Hostile",
+        "category": "Intelligence Officer",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Franko_Simatovi%C4%87",
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 16,
+        "name": "Naser Orić",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Military Officer",
+        "locationId": 10,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Naser_Ori%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 17,
+        "name": "Fikret Abdić",
+        "alias": "Babo",
+        "affiliation": "Unfriendly",
+        "category": "Warlord",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Fikret_Abdi%C4%87",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 18,
+        "name": "Mirjana Marković",
+        "alias": "Mira",
+        "affiliation": "Hostile",
+        "category": "Political Figure",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Mirjana_Markovi%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 19,
+        "name": "Madeleine Albright",
+        "alias": null,
+        "affiliation": "Ally",
+        "category": "Diplomat",
+        "locationId": 14,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Madeleine_Albright",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 20,
+        "name": "Sonja Biserko",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Activist",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Sonja_Biserko",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 21,
+        "name": "Nataša Kandić",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Activist",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Nata%C5%A1a_Kandi%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 22,
+        "name": "Svetlana Ražnatović",
+        "alias": "Ceca",
+        "affiliation": "Unfriendly",
+        "category": "Public Figure",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Svetlana_Ra%C5%BEnatovi%C4%87",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 23,
+        "name": "Carla Del Ponte",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Prosecutor",
+        "locationId": 11,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Carla_Del_Ponte",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 24,
+        "name": "Hashim Thaçi",
+        "alias": "The Snake",
+        "affiliation": "Neutral",
+        "category": "Paramilitary Leader",
+        "locationId": 12,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Hashim_Tha%C3%A7i",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 25,
+        "name": "Zoran Đinđić",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Political Opposition",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Zoran_%C4%90in%C4%91i%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 26,
+        "name": "Milan Martić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Paramilitary Leader",
+        "locationId": 7,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Milan_Marti%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 27,
+        "name": "Richard Holbrooke",
+        "alias": null,
+        "affiliation": "Ally",
+        "category": "Diplomat",
+        "locationId": 13,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Richard_Holbrooke",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 28,
+        "name": "Wesley Clark",
+        "alias": null,
+        "affiliation": "Ally",
+        "category": "Military Officer",
+        "locationId": 15,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Wesley_Clark",
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 29,
+        "name": "Viktor Bout",
+        "alias": "Merchant of Death",
+        "affiliation": "Hostile",
+        "category": "Arms Dealer",
+        "locationId": 1,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Viktor_Bout",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 30,
+        "name": "Radislav Krstić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Military Officer",
+        "locationId": 16,
+        "realPersonWiki": "https://en.wikipedia.org/wiki/Radislav_Krsti%C4%87",
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 31,
+        "name": "Samantha Collins",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "MI6 Field Agent",
+        "locationId": 21,
+        "realPersonWiki": null,
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 32,
+        "name": "Ian Richards",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "MI6 Station Chief",
+        "locationId": 25,
+        "realPersonWiki": null,
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 33,
+        "name": "Dragan Vukić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Paramilitary Commander",
+        "locationId": 23,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 34,
+        "name": "Milica Petrova",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "GRU Operative",
+        "locationId": 22,
+        "realPersonWiki": null,
+        "accessLevel": "Top Secret"
+    },
+    {
+        "id": 35,
+        "name": "James Wheeler",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "CIA Officer",
+        "locationId": 5,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 36,
+        "name": "Fatima al-Sayeed",
+        "alias": null,
+        "affiliation": "Neutral",
+        "category": "Foreign Volunteer Liaison",
+        "locationId": 18,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 37,
+        "name": "Miroslav Petrić",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "HVO Officer",
+        "locationId": 19,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 38,
+        "name": "Zoran Lukić",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Crime Boss",
+        "locationId": 24,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 39,
+        "name": "Ahmed Zubair",
+        "alias": null,
+        "affiliation": "Neutral",
+        "category": "Foreign Fighter",
+        "locationId": 20,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 40,
+        "name": "Dragomir Petrović",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "RS Intelligence Officer",
+        "locationId": 2,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 41,
+        "name": "Lejla Kovačević",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Informant",
+        "locationId": 5,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 42,
+        "name": "Katarina Marković",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Journalist (MI5 Source)",
+        "locationId": 1,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 43,
+        "name": "Aida Selmanović",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Witness / Informant",
+        "locationId": 10,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 44,
+        "name": "Elena Ivanova",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "Military Advisor",
+        "locationId": 2,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 45,
+        "name": "Ivanka Marinović",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Liaison Officer",
+        "locationId": 4,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 46,
+        "name": "Petar Jovanović",
+        "alias": null,
+        "affiliation": "Hostile",
+        "category": "State Security Officer",
+        "locationId": 1,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 47,
+        "name": "Marija Kovač",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Counterintelligence Agent",
+        "locationId": 4,
+        "realPersonWiki": null,
+        "accessLevel": "Secret"
+    },
+    {
+        "id": 48,
+        "name": "John Anderson",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "War Correspondent",
+        "locationId": 5,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 49,
+        "name": "Mirela Hasanović",
+        "alias": null,
+        "affiliation": "Friendly",
+        "category": "Aid Worker",
+        "locationId": 10,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    },
+    {
+        "id": 50,
+        "name": "Jean Dupont",
+        "alias": null,
+        "affiliation": "Neutral",
+        "category": "UN Observer",
+        "locationId": 5,
+        "realPersonWiki": null,
+        "accessLevel": "Confidential"
+    }
+]
