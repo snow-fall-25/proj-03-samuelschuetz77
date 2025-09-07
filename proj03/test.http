@@ -1,0 +1,114 @@
+@baseUrl = http://localhost:5028
+
+### Capability 1 - inject IConfiguration and retrieve some value from your appsettings.json file (or other configuration source)
+### Reads agency name from appsettings.json
+GET {{baseUrl}}/agency/info
+
+
+### Capability 2 - static files hosting
+### Serves a static file from wwwroot
+GET {{baseUrl}}/health.txt
+
+### Capability 3 (valid) - use DataAnnotations attributes (happy path)
+### This should return 201 Created with a Location header like /people/{newId}
+POST {{baseUrl}}/people
+Content-Type: application/json
+
+{
+  "fullName": "Elvir Hadžić",
+  "category": "Field Asset",
+  "affiliation": "Friendly",
+  "accessLevel": 3
+}
+
+
+
+### Capability 3 - use DataAnnotations attributes to validate incoming data (Required, MaxLength, Email, Range, etc.)
+### Attempt to create invalid person (AccessLevel out of range triggers validation error)
+POST {{baseUrl}}/people
+Content-Type: application/json
+
+{
+  "fullName": "Invalid Agent",
+  "category": "Test",
+  "affiliation": "Friendly",
+  "accessLevel": 15
+}
+
+
+### Capability 4 - use an endpoint group
+### POST request inside /people group
+POST {{baseUrl}}/people
+Content-Type: application/json
+
+{
+  "fullName": "Test Asset",
+  "category": "Asset",
+  "affiliation": "Friendly",
+  "accessLevel": 3
+}
+
+
+### Capability 5 - use TypedResults in your endpoint
+### Get a person by ID → returns TypedResults.Ok or TypedResults.NotFound
+GET {{baseUrl}}/people/1
+X-Access-Level: 9
+
+
+### Capability 6 - use Results.* in your endpoint (e.g. return Results.Created($"/path/{id}", newItem);)
+### Agency info returns Results.Ok
+GET {{baseUrl}}/agency/info
+
+
+### Capability 7 - use .WithName() on an endpoint
+### Person GET endpoint is named "GetPersonById"
+GET {{baseUrl}}/people/2
+X-Access-Level: 9
+
+
+### Capability 8 - Generate a link with LinkGenerator on a named endpoint
+### Search people by name, returns self-link via LinkGenerator
+GET {{baseUrl}}/people/search?q=Slobodan
+
+
+### Capability 9 - Bind a parameter from the query string
+### q= parameter bound automatically
+GET {{baseUrl}}/people/search?q=Karadžić
+
+
+### Capability 10 - Bind a parameter from an http header
+### Reads custom header X-Access-Level
+GET {{baseUrl}}/people/5
+X-Access-Level: 2
+
+
+### Capability 11 - Use .AddEndpointFilter() to add custom logging to only one endpoint or endpoint group
+### Protocols group logs every request
+GET {{baseUrl}}/protocols/by-location/21
+X-Agent-Id: MI5-SCHUETZ-01
+
+
+### Capability 12 - Use .UseExceptionHandler()
+### Middleware catches exceptions and redirects to /errors
+GET {{baseUrl}}/people/2
+X-Access-Level: 1
+
+
+### Capability 13 - Show use of .UseExceptionHandler()
+### Access violation → handled by /errors
+GET {{baseUrl}}/people/3
+X-Access-Level: 1
+
+
+### Capability 14 - Show use of multiple HTTP requests with different paths all being handled by the same endpoint because of route parameters
+### /loc/{id} and /places/{id} point to same handler
+GET {{baseUrl}}/loc/21
+GET {{baseUrl}}/places/21
+
+
+### Capability 15 - Show multiple HTTP requests with similar but not matching routes
+### /people/{id:int} vs /people/by-alias/{alias}
+GET {{baseUrl}}/people/13
+X-Access-Level: 9
+
+GET {{baseUrl}}/people/by-alias/Arkan
